@@ -1,0 +1,23 @@
+mat-form-field {
+  width: 300px;
+}
+
+mat-card-title {
+  font-family: 'Square Sans';
+  font-size: 5vh;
+  color: #00ACC1;
+}
+
+.login-form-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.button-flex-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
