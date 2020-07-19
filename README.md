@@ -1,6 +1,6 @@
-# Listiify
+# Listiify - Assessment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.11.
+This is an assessment project for a full stack developer position.
 
 ## Development server
 
