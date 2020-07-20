@@ -1,0 +1,22 @@
+mat-card {
+  width: 50%
+}
+
+mat-card-title {
+  padding-bottom: 10px;
+  font-family: Playfair Display, serif;
+  font-weight: 600;
+
+}
+
+
+mat-card-subtitle {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: bold;
+
+}
+
+
+mat-card-content {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

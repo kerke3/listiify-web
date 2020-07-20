@@ -1,0 +1,17 @@
+.app-logo {
+  font-family: 'Square Sans';
+  font-size: 5vh;
+  color: #00ACC1;
+}
+
+
+/* .app-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+} */
+
+mat-toolbar {
+  justify-content: space-between;
+}
