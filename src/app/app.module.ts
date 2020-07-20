@@ -12,6 +12,8 @@ import { GridComponent } from './common/grid/grid.component';
 import { LoginComponent } from './auth/login/login.component';
 import { UsersComponent } from './users/users.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { ListComponent } from './common/list/list.component';
+import { AddTaskComponent } from './tasks/add-task.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { TasksComponent } from './tasks/tasks.component';
     UsersComponent,
     TasksComponent,
     GridComponent,
+    ListComponent,
+    AddTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,5 +37,6 @@ import { TasksComponent } from './tasks/tasks.component';
 
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [AddTaskComponent],
 })
 export class AppModule {}

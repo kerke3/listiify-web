@@ -1,5 +1,24 @@
+<div class='enable-tasks-delete' fxLayoutAlign=end>
+  <mat-slide-toggle color='warn'>
+    <mat-icon color="primary">delete</mat-icon>
+  </mat-slide-toggle>
+</div>
 <mat-tab-group>
-  <mat-tab label="All Taks"> All Taks </mat-tab>
-  <mat-tab label="Pending Tasks"> Pending Tasks </mat-tab>
-  <mat-tab label="Completed Tasks"> Completed Tasks </mat-tab>
+  <mat-tab label="All Taks">
+    <tasks-list>
+    </tasks-list>
+  </mat-tab>
+  <mat-tab label="Pending Tasks">
+    <tasks-list>
+    </tasks-list>
+  </mat-tab>
+  <mat-tab label="Completed Tasks">
+    <tasks-list>
+    </tasks-list>
+  </mat-tab>
 </mat-tab-group>
+<div class='add-task' fxLayoutAlign=end>
+  <button mat-raised-button color="primary" (click)="onAdd()">
+    Add a Task
+  </button>
+</div>

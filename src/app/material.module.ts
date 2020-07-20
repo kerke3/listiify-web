@@ -8,6 +8,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -19,6 +23,10 @@ import { MatRippleModule } from '@angular/material/core';
     MatGridListModule,
     MatIconModule,
     MatRippleModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatDialogModule,
   ],
   exports: [
     MatButtonModule,
@@ -30,6 +38,10 @@ import { MatRippleModule } from '@angular/material/core';
     MatGridListModule,
     MatIconModule,
     MatRippleModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}
