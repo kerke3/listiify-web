@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,7 @@ import { AddTaskComponent } from './tasks/add-task.component';
 import { AuthService } from './auth/auth.service';
 import { UserCardService } from './users/users.service';
 import { TasksService } from './tasks/tasks.service';
+import { environment } from './../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ import { TasksService } from './tasks/tasks.service';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
 
   providers: [AuthService, UserCardService, TasksService],

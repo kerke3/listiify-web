@@ -1,13 +1,13 @@
 import { Subject } from 'rxjs';
-import { UserCard } from './users.model';
+import { UserCard, UserData } from './users.model';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserCardService {
-  userCardChosen = new Subject<UserCard>();
+  userCardChosen = new Subject<UserData>();
   private usersCardList: UserCard[] = [
     {
-      email: 'anas@gmail.com',
+      email: 'anas1@gmail.com',
       displayName: 'Anas Mohammed',
       isAdmin: true,
       totalTasks: 12,
@@ -15,7 +15,7 @@ export class UserCardService {
       pendingTasks: 2,
     },
     {
-      email: 'anas@gmail.com',
+      email: 'anas2@gmail.com',
       displayName: 'Anas Mohammed',
       isAdmin: true,
       totalTasks: 12,
@@ -23,7 +23,7 @@ export class UserCardService {
       pendingTasks: 2,
     },
     {
-      email: 'anas@gmail.com',
+      email: 'anas3@gmail.com',
       displayName: 'Anas Mohammed',
       isAdmin: true,
       totalTasks: 12,
@@ -31,7 +31,7 @@ export class UserCardService {
       pendingTasks: 2,
     },
     {
-      email: 'anas@gmail.com',
+      email: 'anas4@gmail.com',
       displayName: 'Anas Mohammed',
       isAdmin: true,
       totalTasks: 12,
@@ -46,10 +46,20 @@ export class UserCardService {
 
   private selectedUserCard: UserCard;
 
-  findUser(selectedEmail: String) {
+  findUser(selectedEmail: String, selectOrDelete: boolean) {
     this.selectedUserCard = this.usersCardList.find(
       (ex) => ex.email === selectedEmail
     );
-    this.userCardChosen.next({ ...this.selectedUserCard });
+    if (selectOrDelete) {
+      this.userCardChosen.next({
+        email: this.selectedUserCard.email,
+        displayName: this.selectedUserCard.displayName,
+        isAdmin: this.selectedUserCard.isAdmin,
+      });
+    } else {
+      this.userCardChosen.next(null);
+    }
   }
+
+  deleteUser() {}
 }

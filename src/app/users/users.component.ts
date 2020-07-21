@@ -16,10 +16,10 @@ export class UsersComponent implements OnInit {
   }
 
   onCardChosen(email) {
-    console.log('chosen');
+    this.userCardService.findUser(email, true);
   }
 
   onCardDelete(email) {
-    console.log('delete');
+    this.userCardService.findUser(email, false);
   }
 }

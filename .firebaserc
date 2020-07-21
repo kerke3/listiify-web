@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "listiify": {
+      "hosting": {
+        "listiify": [
+          "listiify"
+        ]
+      }
+    }
+  }
+}
