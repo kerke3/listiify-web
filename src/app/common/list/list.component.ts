@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Task } from 'src/app/tasks/tasks.model';
 
 @Component({
   selector: 'tasks-list',
@@ -6,7 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
+  checked: boolean;
+  @Input() userTaskList: Task[];
+  @Input() toggleOn: boolean;
+  @Output() taskChecked = new EventEmitter();
+  @Output() taskDelete = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
+
+  onChange($event, taskId) {
+    this.checked = $event.checked;
+    this.taskChecked.emit(taskId);
+  }
+  onTaskDelete(taskId) {
+    this.taskDelete.emit(taskId);
+  }
 }

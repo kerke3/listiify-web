@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRippleModule,
     MatListModule,
     MatCheckboxModule,
-    MatSlideToggleModule,
+    MatButtonToggleModule,
     MatDialogModule,
   ],
   exports: [
@@ -40,7 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRippleModule,
     MatListModule,
     MatCheckboxModule,
-    MatSlideToggleModule,
+    MatButtonToggleModule,
     MatDialogModule,
   ],
 })

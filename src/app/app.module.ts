@@ -14,6 +14,9 @@ import { UsersComponent } from './users/users.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ListComponent } from './common/list/list.component';
 import { AddTaskComponent } from './tasks/add-task.component';
+import { AuthService } from './auth/auth.service';
+import { UserCardService } from './users/users.service';
+import { TasksService } from './tasks/tasks.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,7 @@ import { AddTaskComponent } from './tasks/add-task.component';
     ReactiveFormsModule,
   ],
 
-  providers: [],
+  providers: [AuthService, UserCardService, TasksService],
   bootstrap: [AppComponent],
   entryComponents: [AddTaskComponent],
 })

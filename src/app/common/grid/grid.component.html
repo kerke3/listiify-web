@@ -1,128 +1,23 @@
+<div class='enable-tasks-delete' fxLayoutAlign=center>
+  <mat-button-toggle [checked]="toggleOn" (change)="onToggleOn($event)">
+    <mat-icon [color]="setColor">delete</mat-icon>
+  </mat-button-toggle>
+</div>
 <mat-grid-list [cols]="cols" rowHeight="2:1">
-  <mat-grid-tile>
+  <mat-grid-tile *ngFor="let userCard of usersCardList">
     <mat-card>
       <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
+        <button mat-mini-fab [disabled]="!toggleOn" color="warn" (click)="onCardDelete(userCard.email)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header fxLayoutAlign=end>
-        <button mat-mini-fab [hidden]="true" color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-card-header>
-      <mat-card-title>Anas Mohammed</mat-card-title>
-      <mat-card-subtitle>Email : anas@gmail.com</mat-card-subtitle>
-      <mat-card-content>Total Tasks : 12</mat-card-content>
-      <mat-card-content>Completed Tasks : 6</mat-card-content>
-      <mat-card-content>Pending Tasks : 6</mat-card-content>
+      <div (click)="onCardClick(userCard.email)">
+        <mat-card-title>{{userCard.displayName}}</mat-card-title>
+        <mat-card-subtitle>Email : {{userCard.email}}</mat-card-subtitle>
+        <mat-card-content>Total Tasks : {{userCard.totalTasks}}</mat-card-content>
+        <mat-card-content>Completed Tasks : {{userCard.compeletedTasks}}</mat-card-content>
+        <mat-card-content>Pending Tasks : {{userCard.pendingTasks}}</mat-card-content>
+      </div>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

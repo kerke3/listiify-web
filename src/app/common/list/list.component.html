@@ -1,7 +1,9 @@
 <mat-list>
-  <mat-list-item>
-    <mat-checkbox>task Name</mat-checkbox>
-    <button class="task-delete-button" mat-mini-fab [hidden]="true" color="warn">
+  <mat-list-item *ngFor="let task of userTaskList">
+    <mat-checkbox (change)="onChange($event,task.id)" [checked]="task.isDone" [value]="task.id"
+      [ngClass]="task.isDone ? 'strikethrough' : 'null'">
+      {{task.name}}</mat-checkbox>
+    <button class="task-delete-button" mat-mini-fab color="warn" [disabled]="!toggleOn" (click)="onTaskDelete(task.id)">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-list-item>

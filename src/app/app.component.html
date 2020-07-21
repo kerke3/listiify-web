@@ -1,7 +1,7 @@
-<mat-toolbar>
+<mat-toolbar *ngIf="isAuth">
   <div class='app-logo'>Listiify</div>
   <div>
-    <button mat-raised-button color="warn">Sign Out</button>
+    <button mat-raised-button color="warn" (click)="onSignout()">Sign Out</button>
   </div>
 </mat-toolbar>
 <div class='app-content'>

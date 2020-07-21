@@ -5,13 +5,13 @@
         Listiify
       </mat-card-title>
       <mat-card-content>
-        <form [formGroup]="form" fxLayoutGap="15px">
+        <form [formGroup]="form" fxLayoutGap="15px" (ngSubmit)="onSubmit()">
           <mat-form-field>
             <input formControlName="email" type="email" matInput placeholder="Enter Your Email">
             <mat-error *ngIf="!email.hasError('required')">
               Email is invalid.</mat-error>
-            <mat-hint *ngIf="email.touched && email.hasError('required')">
-              Email is required</mat-hint>
+            <mat-error *ngIf="email.touched && email.hasError('required')">
+              Email is required</mat-error>
           </mat-form-field>
           <br />
           <mat-form-field>

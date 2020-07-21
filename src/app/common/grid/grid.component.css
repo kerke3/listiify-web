@@ -1,5 +1,16 @@
 mat-card {
-  width: 50%
+  width: 50%;
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+mat-card:hover {
+  background-color: cornflowerblue;
+}
+
+.enable-tasks-delete {
+  margin-top: 1%;
+  padding-top: 10px;
 }
 
 mat-card-title {

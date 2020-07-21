@@ -1,6 +1,12 @@
-import { AfterContentInit, Component, ViewChild } from '@angular/core';
-
+import {
+  AfterContentInit,
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { UserCard } from './../../users/users.model';
 
 @Component({
   selector: 'users-grid',
@@ -9,6 +15,11 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 })
 export class GridComponent implements AfterContentInit {
   cols: number;
+  toggleOn: boolean = false;
+  setColor: string = 'primary';
+  @Input() usersCardList: UserCard[];
+  @Output() cardChosen = new EventEmitter();
+  @Output() cardDelete = new EventEmitter();
 
   gridByBreakpoint = {
     xl: 3,
@@ -24,5 +35,23 @@ export class GridComponent implements AfterContentInit {
     this.observableMedia.media$.subscribe((change: MediaChange) => {
       this.cols = this.gridByBreakpoint[change.mqAlias];
     });
+  }
+
+  onToggleOn($event) {
+    console.log($event);
+    this.toggleOn = !this.toggleOn;
+    if (this.setColor === 'primary') {
+      this.setColor = 'warn';
+    } else {
+      this.setColor = 'primary';
+    }
+  }
+
+  onCardClick(email) {
+    this.cardChosen.emit(email);
+  }
+
+  onCardDelete(email) {
+    this.cardDelete.emit(email);
   }
 }
