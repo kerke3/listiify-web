@@ -1,7 +1,8 @@
+import { Task } from '../tasks/tasks.model';
+
 export interface UserCard {
   email: string;
   displayName: string;
-  isAdmin: boolean;
   totalTasks: number;
   compeletedTasks: number;
   pendingTasks: number;
@@ -9,6 +10,5 @@ export interface UserCard {
 
 export interface UserData {
   email: string;
-  displayName: string;
-  isAdmin: boolean;
+  tasks: Task[];
 }

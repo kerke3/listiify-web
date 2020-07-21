@@ -20,6 +20,7 @@ import { AuthService } from './auth/auth.service';
 import { UserCardService } from './users/users.service';
 import { TasksService } from './tasks/tasks.service';
 import { environment } from './../environments/environment';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { environment } from './../environments/environment';
     GridComponent,
     ListComponent,
     AddTaskComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

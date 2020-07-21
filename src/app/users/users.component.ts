@@ -1,25 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserCardService } from './users.service';
 import { UserCard } from './users.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
+  dataList: Observable<any[]>;
   userscardList: UserCard[] = [];
-  constructor(private userCardService: UserCardService) {}
+  usersCardSubscription: Subscription;
+  constructor(
+    private userCardService: UserCardService,
+    private db: AngularFirestore
+  ) {}
 
   ngOnInit(): void {
-    this.userscardList = this.userCardService.getUsersList();
+    this.usersCardSubscription = this.userCardService.cardListsChanged.subscribe(
+      (usersCards) => (this.userscardList = usersCards)
+    );
+    this.userCardService.fetchFirestoreData();
   }
 
   onCardChosen(email) {
-    this.userCardService.findUser(email, true);
+    // this.userCardService.findUser(email, true);
   }
 
   onCardDelete(email) {
-    this.userCardService.findUser(email, false);
+    this.userCardService.deletetasks(email);
+  }
+
+  ngOnDestroy() {
+    this.usersCardSubscription.unsubscribe();
   }
 }
