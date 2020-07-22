@@ -10,5 +10,13 @@ export interface UserCard {
 
 export interface UserData {
   email: string;
+  displayName: string;
   tasks: Task[];
+  pendingTasks: Task[];
+  completedTasks: Task[];
+}
+
+export interface UserObj {
+  email: string;
+  displayName: string;
 }

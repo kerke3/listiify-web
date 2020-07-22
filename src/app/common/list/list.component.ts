@@ -8,7 +8,7 @@ import { Task } from 'src/app/tasks/tasks.model';
 })
 export class ListComponent implements OnInit {
   checked: boolean;
-  @Input() userTaskList: Task[];
+  @Input() userTasksList: Task[];
   @Input() toggleOn: boolean;
   @Output() taskChecked = new EventEmitter();
   @Output() taskDelete = new EventEmitter();
@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
 
   onChange($event, taskId) {
     this.checked = $event.checked;
-    this.taskChecked.emit(taskId);
+    this.taskChecked.emit([taskId, this.checked]);
   }
   onTaskDelete(taskId) {
     this.taskDelete.emit(taskId);

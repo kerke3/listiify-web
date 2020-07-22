@@ -11,7 +11,7 @@
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-header>
-      <div (click)="onCardClick(userCard.email)" routerLink="/tasks/:{}">
+      <div (click)="onCardClick(userCard.email)" [routerLink]="['/tasks',userCard.email]">
         <mat-card-title>{{userCard.displayName}}</mat-card-title>
         <mat-card-subtitle>Email : {{userCard.email}}</mat-card-subtitle>
         <mat-card-content>Total Tasks : {{userCard.totalTasks}}</mat-card-content>

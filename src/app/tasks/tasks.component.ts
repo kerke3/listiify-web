@@ -1,37 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task.component';
-import { Task } from './tasks.model';
+import { Task, TaskObj } from './tasks.model';
 import { TasksService } from './tasks.service';
 import { UserCard, UserData } from './../users/users.model';
 import { Subscription } from 'rxjs';
 import { UserCardService } from './../users/users.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css'],
 })
-export class TasksComponent implements OnInit {
-  userSubscription: Subscription;
-  tasksUser: UserData;
-  userTaskList: Task[] = [];
+export class TasksComponent implements OnInit, OnDestroy {
+  allUsersTaskDataSubscription: Subscription;
+  usersEmail: String;
+  displayName: String;
+  linkEmail: any;
+  userTasksList: Task[];
+  userTasksCompleted: Task[];
+  userTasksPending: Task[];
   toggleOn: boolean = false;
   setColor: string = 'primary';
+
   constructor(
     private dialog: MatDialog,
     private userTaskService: TasksService,
-    private userCardService: UserCardService
+    private userCardService: UserCardService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.userSubscription = this.userCardService.userCardChosen.subscribe(
-      (user) => {
-        this.tasksUser = user;
-        console.log(user);
+    this.route.paramMap.subscribe((params) => {
+      let email = params.get('email');
+      this.linkEmail = email;
+    });
+
+    if (!this.linkEmail) {
+      this.router.navigate(['404']);
+    }
+
+    this.userCardService.fetchFirestoreData();
+    this.allUsersTaskDataSubscription = this.userCardService.allUserTasksChanged.subscribe(
+      (allUserTasksData) => {
+        let userTasksData = allUserTasksData.find(
+          (ex) => ex.email === this.linkEmail
+        );
+        if (userTasksData) {
+          this.usersEmail = userTasksData.email;
+          this.displayName = userTasksData.displayName;
+          this.userTasksList = userTasksData.tasks;
+          this.userTasksCompleted = userTasksData.completedTasks;
+          this.userTasksPending = userTasksData.pendingTasks;
+        } else {
+          this.usersEmail = '';
+          this.displayName = '';
+          this.userTasksList = [];
+          this.userTasksCompleted = [];
+          this.userTasksPending = [];
+        }
       }
     );
-    this.userTaskList = this.userTaskService.getTasksList();
   }
 
   onToggleOn($event) {
@@ -43,20 +74,35 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  onTaskChecked(taskId) {
-    console.log(taskId);
+  onTaskChecked(taskDetails) {
+    this.userTaskService.checkTask(taskDetails);
   }
 
   onTaskDelete(taskId) {
-    console.log(taskId);
+    this.userTaskService.deleteTask(taskId);
   }
 
-  email: String = 'anas@gmail.com';
+  ngOnDestroy() {
+    this.allUsersTaskDataSubscription.unsubscribe();
+  }
 
   onAdd() {
-    const dialogRef = this.dialog.open(AddTaskComponent, { data: this.email });
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      data: this.linkEmail,
+    });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result.value); // TODO: if closed improperly, value will come null , check before creating
+      // TODO: if closed improperly, value will come null , check before creating
+      if (result.value) {
+        let taskObj = {
+          name: result.value.taskName,
+          isDone: false,
+          user: {
+            displayName: this.displayName,
+            email: this.linkEmail,
+          },
+        };
+        this.userTaskService.addTask(taskObj);
+      }
     });
   }
 }

@@ -1,3 +1,8 @@
+<div class='back-button' fxLayoutAlign=start>
+  <button mat-raised-button [routerLink]="['/users']">
+    <mat-icon color="primary">arrow_back_ios</mat-icon>
+  </button>
+</div>
 <div class='enable-tasks-delete' fxLayoutAlign=end>
   <mat-button-toggle [checked]="toggleOn" (change)="onToggleOn($event)">
     <mat-icon [color]="setColor">delete</mat-icon>
@@ -5,18 +10,18 @@
 </div>
 <mat-tab-group>
   <mat-tab label="All Taks">
-    <tasks-list [userTaskList]="userTaskList" (taskChecked)="onTaskChecked($event)" (taskDelete)="onTaskDelete($event)"
-      [toggleOn]="toggleOn">
+    <tasks-list [userTasksList]="userTasksList" (taskChecked)="onTaskChecked($event)"
+      (taskDelete)="onTaskDelete($event)" [toggleOn]="toggleOn">
     </tasks-list>
   </mat-tab>
   <mat-tab label="Pending Tasks">
-    <tasks-list [userTaskList]="userTaskList" (taskChecked)="onTaskChecked($event)" (taskDelete)="onTaskDelete($event)"
-      [toggleOn]="toggleOn">
+    <tasks-list [userTasksList]="userTasksPending" (taskChecked)="onTaskChecked($event)"
+      (taskDelete)="onTaskDelete($event)" [toggleOn]="toggleOn">
     </tasks-list>
   </mat-tab>
   <mat-tab label="Completed Tasks">
-    <tasks-list [userTaskList]="userTaskList" (taskChecked)="onTaskChecked($event)" (taskDelete)="onTaskDelete($event)"
-      [toggleOn]="toggleOn">
+    <tasks-list [userTasksList]="userTasksCompleted" (taskChecked)="onTaskChecked($event)"
+      (taskDelete)="onTaskDelete($event)" [toggleOn]="toggleOn">
     </tasks-list>
   </mat-tab>
 </mat-tab-group>

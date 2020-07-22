@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserCardService {
-  userCardChosen = new Subject<UserData>();
+  allUserTasksChanged = new Subject<UserData[]>();
   cardListsChanged = new Subject<UserCard[]>();
   private usersCardList: UserCard[] = [];
   private usersTaskList: UserData[];
@@ -30,6 +30,7 @@ export class UserCardService {
       .subscribe((tasksData: any[]) => {
         this.mapToLists(tasksData);
         this.cardListsChanged.next([...this.usersCardList]);
+        this.allUserTasksChanged.next([...this.usersTaskList]);
       });
   }
 
@@ -61,9 +62,16 @@ export class UserCardService {
         compeletedTasks: emailTaskList.length - pendingTasks.length,
       };
 
+      const completedTasks = emailTaskList.filter((task) => {
+        return task.isDone === true;
+      });
+
       let userstasksList: UserData = {
         email: email,
+        displayName: emailTaskList[0].user.displayName,
         tasks: emailTaskList,
+        completedTasks: completedTasks,
+        pendingTasks: pendingTasks,
       };
 
       tempCardsList.push(usersCard);
@@ -82,26 +90,12 @@ export class UserCardService {
     return selectedUser;
   }
 
-  // private selectedUserCard: UserCard;
-
-  // findUser(selectedEmail: String, selectOrDelete: boolean) {
-  //   this.selectedUserCard = this.usersCardList.find(
-  //     (ex) => ex.email === selectedEmail
-  //   );
-  //   if (selectOrDelete) {
-  //     this.userCardChosen.next({
-  //       email: this.selectedUserCard.email,
-  //       displayName: this.selectedUserCard.displayName,
-  //     });
-  //   } else {
-  //     this.userCardChosen.next(null);
-  //   }
-  // }
-
   deletetasks(email) {
     let selectedUser = this.selectedUserList(email);
-    selectedUser.tasks.forEach((task) =>
-      this.db.collection('tasks').doc(task.id).delete()
-    );
+    if (selectedUser) {
+      selectedUser.tasks.forEach((task) =>
+        this.db.collection('tasks').doc(task.id).delete()
+      );
+    }
   }
 }

@@ -1,34 +1,51 @@
-import { User } from './user.model';
 import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UIService } from '../ui.service';
 
 @Injectable()
 export class AuthService {
   authChange = new Subject<boolean>();
-  private user: User;
+  private isAuthenticated = false;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private afAuth: AngularFireAuth,
+    private snackbar: MatSnackBar,
+    private uiService: UIService
+  ) {}
 
   login(authData: AuthData) {
-    this.user = {
-      email: authData.email,
-    };
-    this.authChange.next(true);
-    this.router.navigate(['/users']);
+    this.afAuth
+      .signInWithEmailAndPassword(authData.email, authData.password)
+      .then((result) => {
+        console.log(result);
+        this.authSuccessfully();
+        this.router.navigate(['/users']);
+      })
+      .catch((error) => {
+        this.uiService.loadingStateChanged.next(false);
+        this.snackbar.open(error.message, null, {
+          duration: 3000,
+        });
+      });
   }
 
   logout() {
-    this.user = null;
     this.authChange.next(false);
     this.router.navigate(['/']);
+    this.isAuthenticated = false;
   }
-  getUser() {
-    return { ...this.user };
+
+  private authSuccessfully() {
+    this.isAuthenticated = true;
+    this.authChange.next(true);
   }
 
   isAuth() {
-    return this.user != null;
+    return this.isAuthenticated;
   }
 }

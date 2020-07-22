@@ -38,7 +38,6 @@ export class GridComponent implements AfterContentInit {
   }
 
   onToggleOn($event) {
-    console.log($event);
     this.toggleOn = !this.toggleOn;
     if (this.setColor === 'primary') {
       this.setColor = 'warn';

@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,8 @@ import { UserCardService } from './users/users.service';
 import { TasksService } from './tasks/tasks.service';
 import { environment } from './../environments/environment';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UIService } from './ui.service';
+import { authReducer } from './auth/auth.reducer';
 
 @NgModule({
   declarations: [
@@ -43,9 +47,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
+    // StoreModule.forRoot(authApp:authReducer),
   ],
 
-  providers: [AuthService, UserCardService, TasksService],
+  providers: [AuthService, UserCardService, TasksService, UIService],
   bootstrap: [AppComponent],
   entryComponents: [AddTaskComponent],
 })

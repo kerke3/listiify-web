@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let task of userTaskList">
+  <mat-list-item *ngFor="let task of userTasksList">
     <mat-checkbox (change)="onChange($event,task.id)" [checked]="task.isDone" [value]="task.id"
       [ngClass]="task.isDone ? 'strikethrough' : 'null'">
       {{task.name}}</mat-checkbox>

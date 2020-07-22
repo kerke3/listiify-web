@@ -10,7 +10,6 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  dataList: Observable<any[]>;
   userscardList: UserCard[] = [];
   usersCardSubscription: Subscription;
   constructor(
@@ -19,15 +18,13 @@ export class UsersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.userCardService.fetchFirestoreData();
     this.usersCardSubscription = this.userCardService.cardListsChanged.subscribe(
       (usersCards) => (this.userscardList = usersCards)
     );
-    this.userCardService.fetchFirestoreData();
   }
 
-  onCardChosen(email) {
-    // this.userCardService.findUser(email, true);
-  }
+  onCardChosen(email) {}
 
   onCardDelete(email) {
     this.userCardService.deletetasks(email);
